@@ -17,8 +17,12 @@ jobs:
             goarch: amd64
           - goos: linux
             goarch: '386'
+          - goos: linux
+            goarch: arm64
           - goos: darwin
             goarch: amd64
+          - goos: darwin
+            goarch: arm64
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2.3.4
@@ -33,6 +37,7 @@ jobs:
 
       - name: Build for Linux-amd64
         env:
+          CGO_ENABLED: '0'
           GOOS: ${{ matrix.goos }}
           GOARCH: ${{ matrix.goarch }}
 
